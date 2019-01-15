@@ -1,0 +1,6 @@
+User-agent: *
+ 
+Allow: /
+Disallow: /*.png$
+Disallow: /*.jpg$
+sitemap: https://ekinf.com/sitemap.xml
