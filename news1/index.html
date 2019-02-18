@@ -14,9 +14,9 @@ pagination:
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <!-- Title -->
-  <title>이케이 이야기 | 이케이인프라 - EK INFRA</title>
+  <title>EK 뉴스 | 이케이인프라 - EK INFRA</title>
   <!-- OpenGraph -->
-  <meta property="og:title" content="이케이 이야기 | 이케이인프라 - EK INFRA">
+  <meta property="og:title" content="이케이 뉴스 | 이케이인프라 - EK INFRA">
   <meta property="og:description" content="광통신솔루션전문기업">
   <meta property="og:image" content="/img/bg-img/ek_wide.png">
   {% include head.html %}
@@ -38,7 +38,7 @@ pagination:
       <div class="row h-100 align-items-center">
         <div class="col-12">
           <div class="breadcrumb-text">
-            <h2>EK Story</h2>
+            <h2>EK News</h2>
           </div>
         </div>
       </div>
@@ -49,7 +49,7 @@ pagination:
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="/index.html"><i class="fa fa-home"></i> Home</a></li>
-          <li class="breadcrumb-item active" aria-current="page">이케이 이야기</li>
+          <li class="breadcrumb-item active" aria-current="page">EK 뉴스</li>
         </ol>
       </nav>
     </div>
@@ -67,8 +67,8 @@ pagination:
             {% for post in paginator.posts %}
             <!-- Single Blog Post Area -->
             <div class="single-blog-post-area mb-50 wow fadeInUp" data-wow-delay="100ms">
-              <h6>Post on <a href="#" class="post-date">{{ post.date }}</a> / <a href="#" class="post-author">Peter Crough</a></h6>
-              <a href="#" class="post-title">{{ post.title }}</a>
+              <h6><a href="#" class="post-date">{{ post.date | date: "%Y-%m-%d" }}</a> / <a href="/blog.html" class="post-author">이케이인프라 블로그</a></h6>
+              <a href="{{ post.url }}" class="post-title">{{ post.title }}</a>
               <img src="/img/bg-img/51.jpg" alt="" class="post-thumb">
               <p class="post-excerpt">
                   {{ post.content }}
@@ -76,31 +76,26 @@ pagination:
             </div>
             {% endfor %}
 
+            <!-- pagination -->
+            <nav>
             {% if paginator.total_pages > 1 %}
-            <ul>
+            <ul class="pagination wow fadeInUp" data-wow-delay="100ms">
               {% if paginator.previous_page %}
-              <li>
-                <a href="{{ paginator.previous_page_path | prepend: site.baseurl }}">Newer</a>
-              </li>
+              <li class="page-item"><a class="page-link" href="{{ paginator.previous_page_path | prepend: site.baseurl }}"><i class="fa fa-angle-left"></i></a></li>
+              {% endif %}
+              {% if paginator.page_trail %}
+              {% for trail in paginator.page_trail %}
+                <li class="page-item {% if page.url == trail.path %}active{% endif %}"><a class="page-link" href="{{ trail.path | prepend: site.baseurl }}" title="{{trail.title}}">{{ trail.num }}</a></li>
+              {% endfor %}
               {% endif %}
               {% if paginator.next_page %}
-              <li>
-                <a href="{{ paginator.next_page_path | prepend: site.baseurl }}">Older</a>
-              </li>
+              <li class="page-item"><a class="page-link" href="{{ paginator.next_page_path | prepend: site.baseurl }}"><i class="fa fa-angle-right"></i></a></li>
               {% endif %}
             </ul>
             {% endif %}
+            </nav>
 
           </div>
-
-          <!-- pagination -->
-          <nav>
-            <ul class="pagination wow fadeInUp" data-wow-delay="100ms">
-              <li class="page-item active"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-right"></i></a></li>
-            </ul>
-          </nav>
         </div>
 
         <!-- Sidebar Area -->
@@ -178,14 +173,11 @@ pagination:
               <h5 class="widget-title">Tags</h5>
               <!-- Tags -->
               <ul class="famie-tags">
-                <li><a href="#">All product</a></li>
-                <li><a href="#">Freshy Fruit</a></li>
-                <li><a href="#">Sweet Corn</a></li>
-                <li><a href="#">Chicken</a></li>
-                <li><a href="#">Organic</a></li>
-                <li><a href="#">Farm Practices</a></li>
-                <li><a href="#">Meat</a></li>
-                <li><a href="#">Special Recipe</a></li>
+                {% for post in paginator.posts %}
+                  {% for tag in post.tags %}
+                  <li><a href="#">{{ tag }}</a></li>
+                  {% endfor %}
+                {% endfor %}
               </ul>
             </div>
 
@@ -264,140 +256,7 @@ pagination:
   <!-- ##### Blog Area End ##### -->
 
   <!-- ##### Footer Area Start ##### -->
-  <footer class="footer-area">
-    <!-- Main Footer Area -->
-    <div class="main-footer bg-img bg-overlay section-padding-80-0" style="background-image: url(img/bg-img/53.jpg);">
-      <div class="container">
-        <div class="row">
-
-          <!-- Single Footer Widget Area -->
-          <div class="col-12 col-sm-6 col-lg-6">
-            <div class="footer-widget mb-80">
-              <a href="#" class="foo-logo d-block mb-30"><img src="img/core-img/logo2.png" alt=""></a>
-              <p>광통신솔루션전문기업 - RN광분배기 광스플리터 광분배함 광피그테일 광어댑터 광접속트레이</p>
-              <div class="contact-info">
-                <p><i class="fa fa-map-pin" aria-hidden="true"></i><span>경기도 남양주시 진접읍 해밀예당1로236번길 3, 2205-1202</span></p>
-                <p><i class="fa fa-envelope" aria-hidden="true"></i><span>contact@ekinf.com</span></p>
-                <p><i class="fa fa-phone" aria-hidden="true"></i><span>+82 10 2289 3522</span></p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Single Footer Widget Area -->
-          <div class="col-12 col-sm-6 col-lg-6">
-            <div class="footer-widget mb-80">
-              <h5 class="widget-title">제품 구매</h5>
-              <!-- Footer Widget Nav -->
-              <nav class="footer-widget-nav">
-                <ul>
-                  <li class="naver"><a href="buy.html">네이버스토어</a></li>
-                  <li><a href="buy-rn.html">RN광분배기</a></li>
-                  <li><a href="buy-ops.html">광스플리터</a></li>
-                  <li><a href="buy-odf.html">광분배함</a></li>
-                  <li><a href="buy-ofa.html">광어댑터</a></li>
-                  <li><a href="buy-opg.html">광피그테일</a></li>
-                  <li><a href="buy-ofs.html">광접속트레이</a></li>
-                  <li><a href="buy-etc.html">기타자재</a></li>
-                </ul>
-              </nav>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <!-- Copywrite Area  -->
-    <div class="copywrite-area">
-      <div class="container">
-        <div class="copywrite-text">
-          <div class="row align-items-center">
-            <div class="col-md-6">
-              <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-              Copyright &copy; <script>document.write(new Date().getFullYear());</script> EK INFRA All rights reserved
-              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-              </p>
-            </div>
-            <div class="col-md-6">
-              <div class="footer-nav">
-                <nav>
-                  <ul>
-                    <li><a href="#credit" class="popup-with-zoom-anim">Credits</a></li>
-                    <!-- dialog itself, mfp-hide class is required to make dialog hidden -->
-                    <div id="credit" class="zoom-anim-dialog mfp-hide">
-                      <ol>
-                        <li><div>This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></li>
-                        <li>Icons made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></li>
-                      </ol>
-                    </div>
-
-                    <li><a href="#privacy" class="popup-with-zoom-anim">개인정보 처리방침</a></li>
-                    
-                    <!-- dialog itself, mfp-hide class is required to make dialog hidden -->
-                    <div id="privacy" class="zoom-anim-dialog mfp-hide">
-                      <dl>
-                        <dt>개인정보 처리방침</dt>
-                        <dd class="scrl">
-                          <ul>
-                            <li><strong>1. 개인정보의 수집 방법</strong>
-                              <p>자사 뉴스레터 신청, 제품 상담 문의 등을 통해 개인이 직접 신청합니다.</p>
-                            </li>
-                            <li><strong>2. 개인정보의 수집 목적, 항목 및 보유기간</strong>
-                              <ol>
-                                <li>1) 수집/이용 목적: 자사 뉴스레터 수신, 원활한 상담 문의, 그외 질답
-                                </li>
-                                <li>2) 수집하는 항목: 개인이 직접 전송한 성명, 이메일 주소
-                                </li>
-                                <li>3) 보유/이용 기간: 이용자의 개인정보는 보유기간이 경과하거나 이용목적이 달성되면 지체 없이 파기합니다. 단, 법령 등에 의해 보관해야 하는 경우에는 해당기간 동안 보관합니다.
-                                </li>
-                              </ol>
-                            </li>
-                            <li><strong>3. 개인정보의 파기절차 및 방법</strong>
-                              <p>이용자의 개인정보는 원칙적으로 보유기간이 경과하거나 이용목적이 달성된 경우에는 재생 불가능한 방법으로 지체 없이 파기합니다.</p>
-                            </li>
-                            <li><strong>4. 이용자의 권리와 그 행사방법</strong>
-                              <p>이용자는 언제든지 개인정보 수집·이용·제공 등의 동의를 철회할 수 있으며, 자신의 개인정보에 대해 열람·제공·정정을 요청할 수 있습니다. 개인정보에 대한 요청사항이 있으신 경우, 아래의 개인정보 관리책임자에게 이메일 또는 전화로 연락하시면 지체없이 조치하겠습니다.
-                              </p>
-                            </li>
-                            <li><strong>5. 개인정보 자동 수집 장치의 설치·운영 및 거부에 관한 사항</strong>
-                              <p>이케이인프라는 개인정보 자동 수집 장치를 설치 및 운영하지 않습니다.</p>
-                            </li>
-                            <li><strong>6. 개인정보 제공 안내</strong>
-                              <p>이케이인프라는 개인정보를 제3자에게 제공하지 않습니다.</p>
-                            </li>
-                            <li><strong>7. 개인정보의 처리위탁</strong>
-                              <p>이케이인프라는 개인정보를 제3자에게 제공하지 않습니다.</p>
-                            </li>
-                            <li><strong>8. 개인정보 보호책임자</strong>
-                              <p>개인정보보호 관련 민원은 아래의 개인정보 보호책임자에게 신고하여 주시기 바랍니다.</p>
-                              <dl>
-                                <dt>담당자 :</dt>
-                                <dd>정은경</dd>
-                                <dt>E-mail :</dt>
-                                              <dd>contact@ekinf.com</dd>
-                              </dl>
-                            </li>
-                          </ol>
-                          <p class="notice">본 ‘개인정보 처리방침’은 최신의 상태로 관리되고 있습니다.</p>
-                          <dl>
-                            <dt>시행일</dt>
-                            <dd>
-                              2019년 1월 14일
-                            </dd>
-                          </dl>
-                        </dd>
-                      </dl>
-                    </div>
-
-                  </ul>
-                </nav>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
+  {% include footer.html %}
   <!-- ##### Footer Area End ##### -->
   
   <!-- ##### All Javascript Files ##### -->
