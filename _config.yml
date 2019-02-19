@@ -1,5 +1,5 @@
-gems:
-  - jekyll-paginate-v2
+#gems:
+#  - jekyll-paginate-v2
 
 # Site configuration for the Jekyll 3 Pagination Gem
 # The values here represent the defaults if nothing is set
@@ -84,8 +84,8 @@ autopages:
     permalink: '/collection/:coll'
   
   # Tag pages, omit to disable
-  tags:
-    layouts: 
-      - 'autopage_tags.html'
-    title: 'Posts tagged with :tag' # :tag is replaced by the tag name
-    permalink: '/tag/:tag'
+  #tags:
+    #layouts: 
+      #- 'autopage_tags.html'
+    #title: 'Posts tagged with :tag' # :tag is replaced by the tag name
+    #permalink: '/tag/:tag'
